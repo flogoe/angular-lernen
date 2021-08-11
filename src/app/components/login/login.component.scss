@@ -1,0 +1,31 @@
+:host {
+  background: aquamarine;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.is-logged-in {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  max-width: 250px;
+  margin: 5px;
+}
+
+button {
+  max-width: 250px;
+  margin: 5px;
+}

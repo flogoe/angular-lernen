@@ -1,0 +1,38 @@
+<div class="login" *ngIf="!isLoggedIn">
+  <p>Bitte logge dich ein!</p>
+  <p (mouseenter)="panic()" (mouseleave)="stopPanic()">{{ panicText }}</p>
+  <mat-form-field>
+    <mat-label>Name:</mat-label>
+    <input
+      matInput
+      type="text"
+      (input)="printChange()"
+      [(ngModel)]="username"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Passwort:</mat-label>
+    <input matInput type="password" [(ngModel)]="password" />
+  </mat-form-field>
+
+  <button mat-raised-button color="accent" (click)="login()">Einloggen</button>
+</div>
+
+<div class="is-logged-in" *ngIf="isLoggedIn">
+  <p>Hallo {{ username }}!</p>
+  <p>Du hast dich erfolgreich eingeloggt!</p>
+  <button mat-raised-button color="accent" (click)="logout()">Ausloggen</button>
+</div>
+
+<!-- <div *ngFor=""></div> -->
+
+<!-- NgIf -->
+<!-- <div *ngIf="username == 'max'; else nichtMax">ngIf: Hallo Max</div>
+<div *ngIf="username != 'max'">ngIf: Auch nicht willkommen</div>
+<ng-template #nichtMax>Du bist nicht Max! Mach dich weg!</ng-template> -->
+
+<!-- Switch Case -->
+<!-- <div [ngSwitch]="username">
+  <div *ngSwitchCase="'max'">Hallo Max</div>
+  <div *ngSwitchDefault>Du bist nicht willkommen</div>
+</div> -->

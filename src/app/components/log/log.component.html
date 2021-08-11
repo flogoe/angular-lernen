@@ -1,0 +1,7 @@
+<button mat-raised-button (click)="sendOutput()">Sende Output</button>
+
+<div *ngFor="let logEvent of logEvents">
+  <div>
+    <b>{{ logEvent.time }}</b> <span>{{ logEvent.msg }}</span>
+  </div>
+</div>
