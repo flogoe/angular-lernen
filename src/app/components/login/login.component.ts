@@ -1,4 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +10,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class LoginComponent implements OnInit {
   @Output('usernameOutput') usernameOutput = new EventEmitter<string>();
 
-  users = []
+  users = [];
   username = '';
   password = '';
   newUsername = '';
@@ -17,27 +19,22 @@ export class LoginComponent implements OnInit {
   isSignUp = false;
   panicText = 'Hier nicht mit der Maus drüber fahren!!!';
 
-  constructor() { }
+  // "Dependency Injection" bzw. genauer "Contstructor Injection"
+  constructor(private readonly loginService: LoginService) {}
 
-  ngOnInit(): void { }
+  // Life-Cycle Hooks von Angular
+  ngOnInit(): void {
+    this.loginService.$isLoggedIn.subscribe((status) => {
+      this.isLoggedIn = status;
+    });
+  }
 
   login() {
-    if (this.users.length) {
-      for (let user of this.users) {
-        if (this.username === user.username && this.password === user.password) {
-          this.isLoggedIn = true;
-          this.usernameOutput.emit('this.username')
-        } else {
-          console.log('Falscher Nutzername oder Passwort.');
-        }
-      }
-    } else {
-      console.log('Falscher Nutzername oder Passwort.');
-    }
+    this.loginService.login(this.username, this.password);
   }
 
   signUp() {
-    this.isSignUp = true
+    this.isSignUp = true;
   }
 
   logout() {
@@ -53,12 +50,12 @@ export class LoginComponent implements OnInit {
   }
 
   cancelSignUp() {
-    this.isSignUp = false
+    this.isSignUp = false;
   }
 
   addUser() {
-    this.users.push({ username: this.newUsername, password: this.newPassword })
-    console.log(this.users)
-    this.cancelSignUp()
+    this.users.push({ username: this.newUsername, password: this.newPassword });
+    console.log(this.users);
+    this.cancelSignUp();
   }
 }
