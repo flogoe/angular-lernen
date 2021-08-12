@@ -1,13 +1,20 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 
 import { LoginService } from 'src/app/services/login.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   @Output('usernameOutput') usernameOutput = new EventEmitter<string>();
 
   users = [];
@@ -19,13 +26,30 @@ export class LoginComponent implements OnInit {
   isSignUp = false;
   panicText = 'Hier nicht mit der Maus drüber fahren!!!';
 
+  subscriptions = new Array<Subscription>();
+
   // "Dependency Injection" bzw. genauer "Contstructor Injection"
   constructor(private readonly loginService: LoginService) {}
 
   // Life-Cycle Hooks von Angular
   ngOnInit(): void {
-    this.loginService.$isLoggedIn.subscribe((status) => {
-      this.isLoggedIn = status;
+    // "Registrieren" der Subscriptions
+    this.subscriptions.push(
+      this.loginService.$isLoggedIn.subscribe((status) => {
+        this.isLoggedIn = status;
+      })
+    );
+  }
+
+  // Wird nach dem Rendern aufgerufen
+  // ngAfterViewInit(): {
+  // }
+
+  // Beim "Zerstören" der Komponente wird ngOnDestroy() aufgerufen
+  ngOnDestroy(): void {
+    // Für jede vorher registrierte Subscription rufen wir nun unsubscribe() auf.
+    this.subscriptions.forEach((subscription) => {
+      subscription.unsubscribe();
     });
   }
 

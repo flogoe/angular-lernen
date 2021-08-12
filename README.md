@@ -25,3 +25,26 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+# Aufgaben
+
+* Registrierung auch mit einem Service/Subjects durchführen. (Kann auch über LoginService gemacht werden)
+* Route/extra Seite für die Registrierung (und damit ggf. auch eine neue RegisterComponent)
+* Navigation in der Toolbar schöner machen
+
+## Extra
+
+* Die LoginComponent oben rechts in die Toolbar zu packen. Nur anzeigen, wenn der Nutzer nicht eingeloggt ist. Wenn Nutzer eingeloggt, dann einen Knopf mit Ausloggen anzeigen.
+* Den eingeloggten Nutzer in der HomeComponent begrüßen. (Service)
+
+# Nächste Themen
+* Mehr zu Material Angular
+* Dialoge
+* Display Flex (sehr cool)
+
+## Allgemeine Themen TODO
+
+* ViewChild
+* Pipes
+* (Translate)
+

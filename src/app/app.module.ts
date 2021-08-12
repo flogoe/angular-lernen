@@ -43,13 +43,15 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgModule } from '@angular/core';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { LogComponent } from './components/log/log.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     ToolbarComponent,
-    LogComponent
+    LogComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
