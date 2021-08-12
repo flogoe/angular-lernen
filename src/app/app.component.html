@@ -2,5 +2,7 @@
 <app-login></app-login>
 <app-log
   (exampleOutput)="printMyExampleOutput($event)"
+  (usernameOutput)="sendUsername($event)"
   [exampleInput]="exampleLogInput"
+  [usernameInput]="usernameLogInput"
 ></app-log>

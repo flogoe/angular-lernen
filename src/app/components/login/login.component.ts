@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -6,29 +6,42 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  @Output('usernameOutput') usernameOutput = new EventEmitter<string>();
+
+  users = []
   username = '';
   password = '';
+  newUsername = '';
+  newPassword = '';
   isLoggedIn = false;
+  isSignUp = false;
   panicText = 'Hier nicht mit der Maus drüber fahren!!!';
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   login() {
-    if (this.username === 'max' && this.password === '123') {
-      this.isLoggedIn = true;
+    if (this.users.length) {
+      for (let user of this.users) {
+        if (this.username === user.username && this.password === user.password) {
+          this.isLoggedIn = true;
+          this.usernameOutput.emit('this.username')
+        } else {
+          console.log('Falscher Nutzername oder Passwort.');
+        }
+      }
     } else {
       console.log('Falscher Nutzername oder Passwort.');
     }
   }
 
-  logout() {
-    this.isLoggedIn = false;
+  signUp() {
+    this.isSignUp = true
   }
 
-  printChange() {
-    console.log(this.username);
+  logout() {
+    this.isLoggedIn = false;
   }
 
   panic() {
@@ -37,5 +50,15 @@ export class LoginComponent implements OnInit {
 
   stopPanic() {
     this.panicText = 'Calm';
+  }
+
+  cancelSignUp() {
+    this.isSignUp = false
+  }
+
+  addUser() {
+    this.users.push({ username: this.newUsername, password: this.newPassword })
+    console.log(this.users)
+    this.cancelSignUp()
   }
 }
