@@ -20,6 +20,13 @@
   align-items: center;
 }
 
+.sign-up {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 input {
   max-width: 250px;
   margin: 5px;
