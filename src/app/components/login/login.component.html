@@ -1,4 +1,4 @@
-<div class="login" *ngIf="!isLoggedIn && !isSignUp">
+<!-- <div class="login" *ngIf="!isLoggedIn">
   <p>Bitte logge dich ein!</p>
   <p (mouseenter)="panic()" (mouseleave)="stopPanic()">{{ panicText }}</p>
   <mat-form-field>
@@ -15,32 +15,13 @@
   </mat-form-field>
 
   <button mat-raised-button color="accent" (click)="login()">Einloggen</button>
-  <button mat-raised-button color="accent" (click)="signUp()">Registrieren</button>
-</div>
+  <button mat-raised-button color="accent" routerLink="/signup">Registrieren</button>
+</div> -->
 
-<div class="is-logged-in" *ngIf="isLoggedIn && !isSignUp">
-  <p>Hallo {{ username }}!</p>
-  <p>Du hast dich erfolgreich eingeloggt!</p>
-  <button mat-raised-button color="accent" (click)="logout()">Ausloggen</button>
-</div>
-
-<div class="sign-up" *ngIf="isSignUp && !isLoggedIn">
-  <p>Bitte gewünschten Benutzernamen und Passwort eingeben!</p>
-  <mat-form-field>
-    <mat-label>Benutzername:</mat-label>
-    <input
-      matInput
-      type="text"
-      [(ngModel)]="newUsername"
-    />
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Passwort:</mat-label>
-    <input matInput type="password" [(ngModel)]="newPassword" />
-  </mat-form-field>
-
-  <button mat-raised-button color="accent" (click)="addUser()">Abschicken</button>
-  <button mat-raised-button color="accent" (click)="cancelSignUp()">Abbrechen</button>
+<div class="is-logged-in">
+  <p>Willkommen auf dieser fabelhaften Registrierungs- und Einlogapplikation!</p>
+  <p>Wenn du hier neu bist, dann registriere dich bitte.</p>
+  <p>Andernfalls kannst du dich auch direkt einloggen.</p>
 </div>
 
 <!-- <div *ngFor=""></div> -->

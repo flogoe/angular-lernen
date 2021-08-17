@@ -1,7 +1,19 @@
-<mat-toolbar color="primary"
-  >Unsere tolle Toolbar
-  <button routerLink="/" routerLinkActive="active">Home</button
-  ><button routerLink="/login" routerLinkActive="active">
-    Login
-  </button></mat-toolbar
->
+<mat-toolbar color="primary">
+  <button mat-raised-button color="accent" routerLink="/home" routerLinkActive="active">Home</button>
+  <button mat-raised-button color="accent" routerLink="/signup" *ngIf="!isLoggedIn">Registrieren</button>
+  <div class="form-field-wrapper" *ngIf="!isLoggedIn">
+    <mat-form-field>
+      <mat-label>Benutzername:</mat-label>
+      <input matInput type="text" [(ngModel)]="username" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Passwort:</mat-label>
+      <input matInput type="password" [(ngModel)]="password" />
+    </mat-form-field>
+    
+  </div>
+  <button mat-raised-button color="accent" (click)="login()" *ngIf="!isLoggedIn" routerLink="/home">Einloggen</button>
+  <button class="right-side-button" mat-raised-button color="accent" (click)="logout()" routerLink="/login" *ngIf="isLoggedIn">Ausloggen</button>
+
+  
+</mat-toolbar>

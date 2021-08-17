@@ -38,6 +38,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 * Den eingeloggten Nutzer in der HomeComponent begrüßen. (Service)
 
 # Nächste Themen
+
 * Mehr zu Material Angular
 * Dialoge
 * Display Flex (sehr cool)

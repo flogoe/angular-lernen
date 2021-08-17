@@ -44,6 +44,7 @@ import { NgModule } from '@angular/core';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { LogComponent } from './components/log/log.component';
 import { HomeComponent } from './components/home/home.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { HomeComponent } from './components/home/home.component';
     LoginComponent,
     ToolbarComponent,
     LogComponent,
-    HomeComponent
+    HomeComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

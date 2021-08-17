@@ -1,0 +1,25 @@
+:host {
+    background: aquamarine;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+}
+
+.sign-up {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    max-width: 250px;
+    margin: 5px;
+}
+
+button {
+    max-width: 250px;
+    margin: 5px;
+}

@@ -8,6 +8,7 @@ import {
 
 import { LoginService } from 'src/app/services/login.service';
 import { Subscription } from 'rxjs';
+import { SignupService } from 'src/app/services/signup.service';
 
 @Component({
   selector: 'app-login',
@@ -17,19 +18,17 @@ import { Subscription } from 'rxjs';
 export class LoginComponent implements OnInit, OnDestroy {
   @Output('usernameOutput') usernameOutput = new EventEmitter<string>();
 
-  users = [];
+  userDB = [];
   username = '';
   password = '';
-  newUsername = '';
-  newPassword = '';
   isLoggedIn = false;
-  isSignUp = false;
   panicText = 'Hier nicht mit der Maus drüber fahren!!!';
 
   subscriptions = new Array<Subscription>();
 
   // "Dependency Injection" bzw. genauer "Contstructor Injection"
-  constructor(private readonly loginService: LoginService) {}
+  constructor(private readonly loginService: LoginService,
+    private readonly signupService: SignupService) { }
 
   // Life-Cycle Hooks von Angular
   ngOnInit(): void {
@@ -37,6 +36,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.loginService.$isLoggedIn.subscribe((status) => {
         this.isLoggedIn = status;
+      }),
+      this.signupService.$userDB.subscribe(($userDB) => {
+        this.userDB = $userDB;
       })
     );
   }
@@ -54,15 +56,11 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   login() {
-    this.loginService.login(this.username, this.password);
-  }
-
-  signUp() {
-    this.isSignUp = true;
+    this.loginService.login(this.userDB, this.username, this.password);
   }
 
   logout() {
-    this.isLoggedIn = false;
+    this.loginService.logout()
   }
 
   panic() {
@@ -71,15 +69,5 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   stopPanic() {
     this.panicText = 'Calm';
-  }
-
-  cancelSignUp() {
-    this.isSignUp = false;
-  }
-
-  addUser() {
-    this.users.push({ username: this.newUsername, password: this.newPassword });
-    console.log(this.users);
-    this.cancelSignUp();
   }
 }
