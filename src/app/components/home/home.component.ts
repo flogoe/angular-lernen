@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  loggedInUser = ''
+  subscriptions = new Array<Subscription>();
+
+  constructor(private readonly loginService: LoginService) { }
 
   ngOnInit(): void {
+    this.subscriptions.push(
+      this.loginService.$loggedInUser.subscribe(($loggedInUser) => {
+        this.loggedInUser = $loggedInUser;
+      })
+    );
   }
-
 }
